@@ -32,9 +32,9 @@ class Solution {
 //    X可以放在L(50) 和C(100) 的左边，来表示 40 和90。
 //    C可以放在D(500) 和M(1000) 的左边，来表示400 和900。
 
-    Map<String, Integer> numRoman = new TreeMap<>();
+    static Map<String, Integer> numRoman = new TreeMap<>();
 
-    public Solution() {
+    static {
         for (int thousand = 0; thousand < 4000; thousand += 1000) {
             String th = thousand(thousand);
             for (int hundred = 0; hundred < 1000; hundred += 100) {
@@ -57,7 +57,7 @@ class Solution {
         return numRoman.get(s);
     }
 
-    private String thousand(int thousand) {
+    private static String thousand(int thousand) {
         switch (thousand / 1000) {
             case 1:
                 return "M";
@@ -69,7 +69,7 @@ class Solution {
         return "";
     }
 
-    private String hundred(int hundred) {
+    private static String hundred(int hundred) {
         switch (hundred / 100) {
             case 1:
                 return "C";
@@ -93,7 +93,7 @@ class Solution {
         return "";
     }
 
-    private String ten(int ten) {
+    private static String ten(int ten) {
         switch (ten / 10) {
             case 1:
                 return "X";
@@ -117,7 +117,7 @@ class Solution {
         return "";
     }
 
-    private String n(int n) {
+    private static String n(int n) {
         switch (n) {
             case 1:
                 return "I";
