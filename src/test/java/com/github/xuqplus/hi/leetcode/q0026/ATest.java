@@ -27,12 +27,13 @@ class Solution {
             return nums.length;
         }
         int size = nums.length;
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size - 1; ) {
             if (nums[i] == nums[i + 1]) {
                 size--;
                 System.arraycopy(nums, i + 1, nums, i, size - i);
-                i--;
+                continue;
             }
+            i++;
         }
         return size;
     }
