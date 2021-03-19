@@ -36,11 +36,31 @@ public class TemplateGenerationTest {
         createQXxx(98);
     }
 
+    @Test
+    void createQ1794() {
+        final JSONArray[] questions = getQuestions();
+        for (JSONArray q : questions) {
+            final Question question = Question.newInstance(q);
+            if (null != question && null != question.getNumber()) {
+                createQXxx(question);
+            }
+        }
+    }
+
     /**
      * generate simple template, questions with number serial number
      */
     void createQXxx(int number) {
         final Question question = getQuestion(number);
+        createQXxx(question);
+    }
+
+    void createQXxx(Question question) {
+        if (null == question || null == question.getNumber() || null == question.getTitle()
+                || null == question.getLevel() || null == question.getUrl()) {
+            log.error("failed to generate template source file, question => {}", question);
+            return;
+        }
         log.info("{}", question);
         try {
             final String template = Files.readString(new File(qTemplate).toPath());
