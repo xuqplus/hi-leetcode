@@ -3,6 +3,8 @@ package com.github.xuqplus.hi.leetcode.q0038;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigInteger;
+
 /**
  * 外观数列
  * easy
@@ -26,26 +28,30 @@ public class ATest {
 
 class Solution {
     public String countAndSay(int n) {
-        String curr = "1";
+        BigInteger curr = BigInteger.ONE;
+        String currStr = "1";
         for (int i = 1; i < n; i++) {
-            curr = next(curr);
+            currStr = next(curr);
+            curr = new BigInteger(currStr);
         }
-        return curr;
+        return currStr;
     }
 
-    static String next(String n) {
-        final int length = n.length();
-        int curr = 1, currCount = 1;
+    static String next(BigInteger last) {
+        BigInteger n = last;
+        BigInteger curr = n.mod(BigInteger.TEN);
+        int currCount = 1;
         StringBuilder sb = new StringBuilder();
-        for (; curr < length; curr++) {
-            if (n.charAt(curr) == n.charAt(curr - 1)) {
+        while (n.compareTo(BigInteger.ZERO) > 0) {
+            n = n.divide(BigInteger.TEN);
+            if (n.mod(BigInteger.TEN).equals(curr)) {
                 currCount++;
             } else {
-                sb.append(String.format("%s%s", currCount, n.charAt(curr - 1)));
+                sb.insert(0, String.format("%s%s", currCount, curr));
+                curr = n.mod(BigInteger.TEN);
                 currCount = 1;
             }
         }
-        sb.append(String.format("%s%s", currCount, n.charAt(curr - 1)));
         return sb.toString();
     }
 }
