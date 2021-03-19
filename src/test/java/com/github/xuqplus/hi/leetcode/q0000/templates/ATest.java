@@ -1,0 +1,25 @@
+package com.github.xuqplus.hi.leetcode.q0000.templates;
+
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+
+/**
+ * title
+ * level
+ * url
+ */
+@Slf4j
+public class ATest {
+
+    @Test
+    void a() {
+        Solution solution = new Solution();
+        log.info("{}", solution.run());
+    }
+}
+
+class Solution {
+    public int run() {
+        return 0;
+    }
+}
