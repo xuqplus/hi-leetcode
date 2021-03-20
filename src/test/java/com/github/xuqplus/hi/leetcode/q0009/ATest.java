@@ -3,9 +3,6 @@ package com.github.xuqplus.hi.leetcode.q0009;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 回文数
  * easy
@@ -26,16 +23,11 @@ class Solution {
         if (x < 0) {
             return false;
         }
-        List<Integer> nums = new ArrayList<>();
-        nums.add(x % 10);
+        int x1 = x % 10, x0 = x;
         while ((x /= 10) > 0) {
-            nums.add(x % 10);
+            x1 *= 10;
+            x1 += x % 10;
         }
-        for (int i = 0; i <= nums.size() / 2; i++) {
-            if (nums.get(i) != nums.get(nums.size() - i - 1)) {
-                return false;
-            }
-        }
-        return true;
+        return x0 == x1;
     }
 }
