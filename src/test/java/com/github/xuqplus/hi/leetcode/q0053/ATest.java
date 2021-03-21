@@ -3,9 +3,6 @@ package com.github.xuqplus.hi.leetcode.q0053;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 最大子序和
  * easy
@@ -30,34 +27,23 @@ class Solution {
             return nums[0];
         }
         int max = nums[0];
-        List<Integer> markNonNegative = new ArrayList<>();
+        int sum = 0;
         for (int i = 0; i < nums.length; i++) {
+            // collect the max value
             if (nums[i] > max) {
                 max = nums[i];
+                // todo, record the max sub array if needed
             }
-            if (nums[i] >= 0) {
-                markNonNegative.add(i);
+            // collect the max summary
+            sum += nums[i];
+            if (sum > max) {
+                max = sum;
+                // todo, record the max sub array if needed
             }
-        }
-        if (1 >= markNonNegative.size()) {
-            return max;
-        }
-        for (int i = 0; i < markNonNegative.size() - 1; i++) {
-            for (int j = i + 1; j < markNonNegative.size(); j++) {
-                int sum = sum(nums, markNonNegative.get(i), markNonNegative.get(j));
-                if (sum > max) {
-                    max = sum;
-                }
+            if (sum < 0) {
+                sum = 0;
             }
         }
         return max;
-    }
-
-    static int sum(int[] nums, int start, int end) {
-        int sum = nums[end];
-        for (int i = start; i < end; i++) {
-            sum += nums[i];
-        }
-        return sum;
     }
 }
