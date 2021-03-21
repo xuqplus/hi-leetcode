@@ -14,12 +14,32 @@ public class ATest {
     @Test
     void a() {
         Solution solution = new Solution();
-        log.info("{}", solution.run());
+        log.info("{}", solution.lengthOfLastWord("abc"));
+        log.info("{}", solution.lengthOfLastWord("abc  "));
+        log.info("{}", solution.lengthOfLastWord("ab c  "));
     }
 }
 
 class Solution {
-    public int run() {
-        return 0;
+    public int lengthOfLastWord(String s) {
+        if (null == s) {
+            return 0;
+        }
+        int max = 0;
+        boolean started = false;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (!started) {
+                if (' ' != s.charAt(i)) {
+                    max++;
+                    started = true;
+                }
+                continue;
+            }
+            if (' ' == s.charAt(i)) {
+                break;
+            }
+            max++;
+        }
+        return max;
     }
 }
