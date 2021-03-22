@@ -15,10 +15,11 @@ public class ATest {
     void a() {
         Solution solution = new Solution();
         log.info("{}", solution.mySqrt(2147395599));
+        log.info("{}", solution.mySqrt(36));
     }
 }
 
-class Solution {
+class Solution2 {
     // dichotomy
     public int mySqrt(long x) {
         if (0 >= x) {
@@ -40,5 +41,20 @@ class Solution {
                 d = 1;
         }
         return (int) a;
+    }
+}
+
+class Solution {
+    // Newton-Raphson method
+    public int mySqrt(final long c) {
+        if (0 >= c) {
+            return 0;
+        }
+        long x = c;
+        long x_2;
+        while ((x_2 = x * x) > c || x_2 + x * 2 + 1 <= c) {
+            x = ((c + x_2) / x) >> 1;
+        }
+        return (int) x;
     }
 }
