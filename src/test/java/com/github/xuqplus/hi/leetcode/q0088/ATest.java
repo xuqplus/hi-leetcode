@@ -3,8 +3,6 @@ package com.github.xuqplus.hi.leetcode.q0088;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 /**
  * 合并两个有序数组
  * easy
@@ -16,8 +14,8 @@ public class ATest {
     @Test
     void a() {
         Solution solution = new Solution();
-        int[] ints = {2, 0};
-        solution.merge(ints, 1, new int[]{1}, 1);
+        int[] ints = {1, 2, 3, 0, 0, 0};
+        solution.merge(ints, 3, new int[]{2, 3, 6}, 3);
         log.info("{}", ints);
     }
 }
@@ -27,7 +25,21 @@ class Solution {
         if (null == nums2 || 0 == nums2.length) {
             return;
         }
-        System.arraycopy(nums2, 0, nums1, m, n);
-        Arrays.sort(nums1);
+        for (int i = 0; i < n; i++) {
+            nums1[m++] = nums2[i];
+            sort(nums1, m);
+        }
+    }
+
+    private void sort(int[] nums, int m) {
+        while (m-- > 1) {
+            if (nums[m] < nums[m - 1]) {
+                int t = nums[m];
+                nums[m] = nums[m - 1];
+                nums[m - 1] = t;
+            } else {
+                break;
+            }
+        }
     }
 }
