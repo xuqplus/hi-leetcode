@@ -14,12 +14,40 @@ public class ATest {
     @Test
     void a() {
         Solution solution = new Solution();
-        log.info("{}", solution.run());
+        ListNode node = new ListNode();
+        node.val = 1;
+        node.next = new ListNode(1, new ListNode(2));
+        log.info("{}", solution.deleteDuplicates(node));
     }
 }
 
 class Solution {
-    public int run() {
-        return 0;
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode r = head;
+        while (null != r && null != r.next) {
+            if (r.val == r.next.val) {
+                r.next = r.next.next;
+            } else {
+                r = r.next;
+            }
+        }
+        return head;
+    }
+}
+
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode() {
+    }
+
+    ListNode(int val) {
+        this.val = val;
+    }
+
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
     }
 }
