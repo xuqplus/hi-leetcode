@@ -21,10 +21,19 @@ public class ATest {
 class Solution {
     public boolean isSymmetric(TreeNode root) {
         if (null == root) {
+            return false;
+        }
+        return solution1(root.left, root.right);
+    }
+
+    static boolean solution1(TreeNode left, TreeNode right) {
+        if (null == left && null == right) {
             return true;
         }
-
-        return false;
+        if (null == left || null == right) {
+            return false;
+        }
+        return left.val == right.val && solution1(left.left, right.right) && solution1(left.right, right.left);
     }
 }
 
