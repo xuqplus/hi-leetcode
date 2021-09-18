@@ -3,9 +3,6 @@ package com.github.xuqplus.hi.leetcode.q0110;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 平衡二叉树
  * easy
@@ -29,34 +26,41 @@ class Solution {
         return solution(root);
     }
 
-    // optimized - but use less
-    static Map<TreeNode, Integer> subTreeHeight = new HashMap<>();
-
     static boolean solution(TreeNode node) {
-        boolean[] result = {true};
-        height(node, result);
+        Boolean[] result = {true};
+        Thread thread = new Thread(() -> {
+            height(node, result);
+            synchronized (result) {
+                result.notify();
+            }
+        });
+        thread.start();
+        synchronized (result) {
+            try {
+                result.wait();
+            } catch (InterruptedException e) {
+                //
+            }
+        }
         return result[0];
     }
 
-    static int height(TreeNode node, boolean[] r) {
+    static int height(TreeNode node, Boolean[] r) {
         if (!r[0]) {
             return -1;
         }
         if (null == node) {
             return 0;
         }
-        Integer cache = subTreeHeight.get(node);
-        if (null != cache) {
-            return cache;
-        }
         int lh = height(node.left, r);
         int rh = height(node.right, r);
         if (Math.abs(lh - rh) > 1) {
             r[0] = false;
+            synchronized (r) {
+                r.notify();
+            }
         }
-        int h = 1 + Math.max(lh, rh);
-        subTreeHeight.put(node, h);
-        return h;
+        return 1 + Math.max(lh, rh);
     }
 
 }
