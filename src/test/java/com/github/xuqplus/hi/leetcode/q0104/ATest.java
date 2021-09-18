@@ -29,6 +29,19 @@ public class ATest {
 class Solution {
 
     public int maxDepth(TreeNode root) {
+        return solution2(root);
+    }
+
+    // recursion
+    static int solution2(TreeNode node) {
+        if (null == node) {
+            return 0;
+        }
+        return 1 + Math.max(solution2(node.left), solution2(node.right));
+    }
+
+    // step by step / up & down
+    static int solution1(TreeNode root) {
         if (null == root) {
             return 0;
         }
