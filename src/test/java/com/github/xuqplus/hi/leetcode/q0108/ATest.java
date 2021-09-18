@@ -14,12 +14,47 @@ public class ATest {
     @Test
     void a() {
         Solution solution = new Solution();
-        log.info("{}", solution.run());
+        int[] a = {-10, -3, 0, 2, 3};
+        TreeNode node = solution.sortedArrayToBST(a);
+        log.info("{}", node);
     }
 }
 
 class Solution {
-    public int run() {
-        return 0;
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if (null == nums || nums.length <= 0) {
+            return null;
+        }
+        return solution(nums, 0, nums.length - 1);
+    }
+
+    static TreeNode solution(int[] arr, int left, int right) {
+        if (right - left < 0) {
+            return null;
+        }
+        int i = (right + left) / 2;
+        TreeNode node = new TreeNode(arr[i]);
+        node.left = solution(arr, left, i - 1);
+        node.right = solution(arr, i + 1, right);
+        return node;
+    }
+}
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode() {
+    }
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
     }
 }
