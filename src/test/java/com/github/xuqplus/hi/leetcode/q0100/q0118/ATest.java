@@ -16,7 +16,7 @@ public class ATest {
     @Test
     void a() {
         Solution solution = new Solution();
-        log.info("{}", solution.generate(5));
+        log.info("{}", solution.getRow(5));
     }
 }
 
@@ -27,6 +27,8 @@ class Solution {
     static {
         List<Integer> firstRow = Arrays.asList(1);
         map.put(0, firstRow);
+
+        generate(34);
     }
 
     static int sum(List<Integer> arr, int i0, int i1) {
@@ -36,7 +38,7 @@ class Solution {
         return arr.get(i0) + arr.get(i1);
     }
 
-    public List<List<Integer>> generate(int numRows) {
+    static List<List<Integer>> generate(int numRows) {
         if (numRows <= 0) {
             return null;
         }
@@ -57,5 +59,9 @@ class Solution {
             result.add(current);
         }
         return result;
+    }
+
+    public List<Integer> getRow(int rowIndex) {
+        return map.get(rowIndex);
     }
 }
