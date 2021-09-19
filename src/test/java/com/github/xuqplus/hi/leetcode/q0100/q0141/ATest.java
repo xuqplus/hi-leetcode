@@ -4,9 +4,6 @@ import com.github.xuqplus.hi.leetcode.common.ListNode;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * 环形链表
  * easy
@@ -28,13 +25,14 @@ class Solution {
         if (null == head) {
             return false;
         }
-        Set<ListNode> nodes = new HashSet<>();
+        // Set<ListNode> nodes = new HashSet<>();
+        int val = 732910249;
         while (null != head.next) {
-            if (nodes.contains(head.next)) {
+            if (val == head.next.val) {
                 return true;
             }
-            nodes.add(head);
             head = head.next;
+            head.val = val;
         }
         return false;
     }
