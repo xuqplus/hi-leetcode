@@ -14,12 +14,16 @@ public class ATest {
     @Test
     void a() {
         Solution solution = new Solution();
-        log.info("{}", solution.run());
+        log.info("{}", solution.singleNumber(new int[]{1, 1, 2}));
     }
 }
 
 class Solution {
-    public int run() {
-        return 0;
+    public int singleNumber(int[] nums) {
+        int r = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            r ^= nums[i];
+        }
+        return r;
     }
 }
