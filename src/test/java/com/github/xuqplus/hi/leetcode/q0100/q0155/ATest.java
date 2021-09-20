@@ -3,8 +3,6 @@ package com.github.xuqplus.hi.leetcode.q0100.q0155;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.util.Stack;
-
 /**
  * 最小栈
  * easy
@@ -22,7 +20,13 @@ public class ATest {
 
 class MinStack {
 
-    final Stack<Integer> stack = new Stack();
+    static class Element {
+        int val;
+        int min;
+    }
+
+    int size = 0;
+    Element[] data = new Element[16];
 
     /**
      * initialize your data structure here.
@@ -32,22 +36,35 @@ class MinStack {
     }
 
     public void push(int val) {
-        stack.push(val);
+        Element element = new Element();
+        element.val = val;
+        if (size == 0) {
+            element.min = val;
+        } else {
+            element.min = Math.min(data[size - 1].min, val);
+        }
+        if (size >= data.length) {
+            Element[] dataNew = new Element[data.length * 2];
+            System.arraycopy(data, 0, dataNew, 0, size);
+            data = dataNew;
+        }
+        data[size++] = element;
     }
 
     public void pop() {
-        stack.pop();
+        if (size > 0)
+            size--;
     }
 
     public int top() {
-        return stack.lastElement();
+        if (size > 0)
+            return data[size - 1].val;
+        return 0;
     }
 
     public int getMin() {
-        int r = Integer.MAX_VALUE;
-        for (Integer v : stack) {
-            r = Math.min(r, v);
-        }
-        return r;
+        if (size > 0)
+            return data[size - 1].min;
+        return 0;
     }
 }
