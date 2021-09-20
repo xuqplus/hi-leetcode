@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 二叉树的前序遍历
@@ -37,6 +38,7 @@ public class ATest {
 
 class Solution {
 
+    // recursion
     static void solution(TreeNode node, List<Integer> r) {
         if (null == node) {
             return;
@@ -46,9 +48,26 @@ class Solution {
         solution(node.right, r);
     }
 
+    // loop / circulation
+    static void solution2(TreeNode node, List<Integer> r) {
+        if (null == node) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.add(node);
+        for (; !stack.isEmpty(); ) {
+            TreeNode pop = stack.pop();
+            r.add(pop.val); // preorder
+            if (null != pop.right)
+                stack.add(pop.right);
+            if (null != pop.left)
+                stack.add(pop.left);
+        }
+    }
+
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
-        solution(root, result);
+        solution2(root, result);
         return result;
     }
 }
