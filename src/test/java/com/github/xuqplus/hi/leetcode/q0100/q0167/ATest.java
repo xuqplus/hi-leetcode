@@ -3,9 +3,6 @@ package com.github.xuqplus.hi.leetcode.q0100.q0167;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 两数之和 II - 输入有序数组
  * easy
@@ -24,17 +21,16 @@ public class ATest {
 class Solution {
 
     public int[] twoSum(int[] numbers, int target) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < numbers.length; i++) {
-            map.put(numbers[i], i);
-        }
-        for (int i = 0; i < numbers.length; i++) {
-            int k = target - numbers[i];
-            Integer index = map.get(k);
-            if (null != index) {
-                return new int[]{i + 1, index + 1};
+        int i = 0, j = numbers.length - 1;
+        while (true) {
+            int sum = numbers[i] + numbers[j];
+            if (sum == target) {
+                return new int[]{i + 1, j + 1};
+            } else if (sum > target) {
+                j--;
+            } else {
+                i++;
             }
         }
-        return null;
     }
 }
