@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ class Solution {
 
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
-        solution(root, result);
+        solution2(root, result);
         return result;
     }
 
@@ -51,5 +52,24 @@ class Solution {
         solution(node.left, r);
         solution(node.right, r);
         r.add(node.val); // postorder
+    }
+
+    static void solution2(TreeNode node, List<Integer> r) {
+        if (null == node) {
+            return;
+        }
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        stack.add(node);
+        for (; !stack.isEmpty(); ) {
+            TreeNode pop = stack.removeLast();
+            r.add(pop.val);
+            if (null != pop.left) {
+                stack.add(pop.left);
+            }
+            if (null != pop.right) {
+                stack.add(pop.right);
+            }
+        }
+        Collections.reverse(r);
     }
 }
