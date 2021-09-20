@@ -5,8 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * 二叉树的前序遍历
@@ -53,10 +53,10 @@ class Solution {
         if (null == node) {
             return;
         }
-        Stack<TreeNode> stack = new Stack<>();
+        LinkedList<TreeNode> stack = new LinkedList<>();
         stack.add(node);
         for (; !stack.isEmpty(); ) {
-            TreeNode pop = stack.pop();
+            TreeNode pop = stack.removeLast();
             r.add(pop.val); // preorder
             if (null != pop.right)
                 stack.add(pop.right);
