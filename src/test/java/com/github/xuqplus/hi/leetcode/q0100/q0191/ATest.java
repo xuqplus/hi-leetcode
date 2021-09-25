@@ -14,12 +14,23 @@ public class ATest {
     @Test
     void a() {
         Solution solution = new Solution();
-        log.info("{}", solution.run());
+        log.info("{}", solution.hammingWeight(3));
     }
 }
 
 class Solution {
-    public int run() {
-        return 0;
+
+    // you need to treat n as an unsigned value
+    public int hammingWeight(int n) {
+        int r = 0;
+        for (int i = 0; i < 16; i++) {
+            if (0 != ((0b1000_0000_0000_0000_0000_0000_0000_0000 >>> i) & n)) {
+                r++;
+            }
+            if (0 != ((0b0000_0000_0000_0000_0000_0000_0000_0001 << i) & n)) {
+                r++;
+            }
+        }
+        return r;
     }
 }
