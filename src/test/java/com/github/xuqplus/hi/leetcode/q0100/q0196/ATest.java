@@ -1,7 +1,6 @@
 package com.github.xuqplus.hi.leetcode.q0100.q0196;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
 
 /**
  * 删除重复的电子邮箱
@@ -11,15 +10,10 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class ATest {
 
-    @Test
-    void a() {
-        Solution solution = new Solution();
-        log.info("{}", solution.run());
-    }
-}
-
-class Solution {
-    public int run() {
-        return 0;
-    }
+    /**
+     * 1:
+     * delete from person where id not in (select id from (select min(id) as id from person group by email) t);
+     * 2:
+     * delete p from person p, person p2 where p.email = p2.email and p.id > p2.id;
+     */
 }
