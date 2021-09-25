@@ -1,7 +1,6 @@
 package com.github.xuqplus.hi.leetcode.q0100.q0181;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
 
 /**
  * 超过经理收入的员工
@@ -11,15 +10,11 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class ATest {
 
-    @Test
-    void a() {
-        Solution solution = new Solution();
-        log.info("{}", solution.run());
-    }
+    /**
+     * select e.name Employee
+     *  from employee e inner join employee e2
+     *  on e.managerId = e2.id
+     *  where e.salary > e2.salary;
+     */
 }
 
-class Solution {
-    public int run() {
-        return 0;
-    }
-}

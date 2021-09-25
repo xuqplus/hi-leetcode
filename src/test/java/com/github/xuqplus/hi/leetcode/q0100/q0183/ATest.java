@@ -11,15 +11,7 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class ATest {
 
-    @Test
-    void a() {
-        Solution solution = new Solution();
-        log.info("{}", solution.run());
-    }
-}
-
-class Solution {
-    public int run() {
-        return 0;
-    }
+    /**
+     * select c.name as Customers from customers c left join orders o on c.id = o.customerId where o.id is null
+     */
 }

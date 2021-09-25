@@ -1,7 +1,6 @@
 package com.github.xuqplus.hi.leetcode.q0100.q0175;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
 
 /**
  * 组合两个表
@@ -11,15 +10,10 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class ATest {
 
-    @Test
-    void a() {
-        Solution solution = new Solution();
-        log.info("{}", solution.run());
-    }
+
+    /**
+     * select FirstName, LastName, City, State from
+     * person p left join address a on p.PersonId = a.PersonId;
+     */
 }
 
-class Solution {
-    public int run() {
-        return 0;
-    }
-}
