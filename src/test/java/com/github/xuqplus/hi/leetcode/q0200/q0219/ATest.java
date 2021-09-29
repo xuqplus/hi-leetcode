@@ -3,6 +3,9 @@ package com.github.xuqplus.hi.leetcode.q0200.q0219;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 存在重复元素 II
  * easy
@@ -21,7 +24,7 @@ public class ATest {
 
 class Solution {
 
-    public boolean containsNearbyDuplicate(int[] nums, int k) {
+    static boolean solution(int[] nums, int k) {
         for (int i = 0; i < nums.length; i++) {
             int top = Math.min(i + k + 1, nums.length);
             for (int j = i + 1; j < top; j++) {
@@ -31,5 +34,28 @@ class Solution {
             }
         }
         return false;
+    }
+
+    static boolean solution2(int[] nums, int k) {
+        Set<Integer> set = new HashSet<>();
+        int k2 = Math.min(nums.length, k);
+        for (int i = 0; i < k2; i++) {
+            if (set.contains(nums[i])) {
+                return true;
+            }
+            set.add(nums[i]);
+        }
+        for (int i = k; i < nums.length; i++) {
+            if (set.contains(nums[i])) {
+                return true;
+            }
+            set.add(nums[i]);
+            set.remove(nums[i - k]);
+        }
+        return false;
+    }
+
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        return solution2(nums, k);
     }
 }
