@@ -14,12 +14,22 @@ public class ATest {
     @Test
     void a() {
         Solution solution = new Solution();
-        log.info("{}", solution.run());
+        // log.info("{}", solution.containsNearbyDuplicate(new int[]{1, 2, 3, 1}, 3));
+        log.info("{}", solution.containsNearbyDuplicate(new int[]{1, 0, 1, 1}, 1));
     }
 }
 
 class Solution {
-    public int run() {
-        return 0;
+
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        for (int i = 0; i < nums.length; i++) {
+            int top = Math.min(i + k + 1, nums.length);
+            for (int j = i + 1; j < top; j++) {
+                if (nums[i] == nums[j]) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
