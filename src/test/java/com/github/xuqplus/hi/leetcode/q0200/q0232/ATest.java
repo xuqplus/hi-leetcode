@@ -36,13 +36,24 @@ public class ATest {
 class MyQueue {
 
     Stack<Integer> s0 = new Stack<>();
+    Stack<Integer> s1 = new Stack<>();
 
     public MyQueue() {
 
     }
 
     public void push(int x) {
-        s0.add(0, x);
+        if (s0.isEmpty()) {
+            s0.push(x);
+        } else {
+            while (!s0.isEmpty()) {
+                s1.push(s0.pop());
+            }
+            s0.push(x);
+            while (!s1.isEmpty()) {
+                s0.push(s1.pop());
+            }
+        }
     }
 
     public int pop() {
