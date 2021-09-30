@@ -14,12 +14,16 @@ public class ATest {
     @Test
     void a() {
         Solution solution = new Solution();
-        log.info("{}", solution.run());
+        log.info("{}", solution.isPowerOfTwo(1));
     }
 }
 
 class Solution {
-    public int run() {
-        return 0;
+
+    public boolean isPowerOfTwo(int n) {
+        if (n < 0) {
+            return false;
+        }
+        return 1 == Integer.bitCount(n);
     }
 }
