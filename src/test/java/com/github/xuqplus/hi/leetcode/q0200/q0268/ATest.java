@@ -14,12 +14,22 @@ public class ATest {
     @Test
     void a() {
         Solution solution = new Solution();
-        log.info("{}", solution.run());
+        log.info("{}", solution.missingNumber(null));
     }
 }
 
 class Solution {
-    public int run() {
-        return 0;
+
+    public int missingNumber(int[] nums) {
+        boolean[] flag = new boolean[nums.length + 1];
+        for (int num : nums) {
+            flag[num] = true;
+        }
+        for (int i = 0; i < flag.length; i++) {
+            if (!flag[i]) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
