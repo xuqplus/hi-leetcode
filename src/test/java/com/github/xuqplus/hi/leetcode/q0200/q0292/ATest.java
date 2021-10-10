@@ -14,12 +14,13 @@ public class ATest {
     @Test
     void a() {
         Solution solution = new Solution();
-        log.info("{}", solution.run());
+        log.info("{}", solution.canWinNim(1));
     }
 }
 
 class Solution {
-    public int run() {
-        return 0;
+
+    public boolean canWinNim(int n) {
+        return 0 != (n & 3);
     }
 }
