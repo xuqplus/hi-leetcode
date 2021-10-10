@@ -13,13 +13,30 @@ public class ATest {
 
     @Test
     void a() {
-        Solution solution = new Solution();
-        log.info("{}", solution.run());
+        NumArray solution = new NumArray(null);
+        log.info("{}", solution);
     }
 }
 
-class Solution {
-    public int run() {
-        return 0;
+class NumArray {
+
+    private final int[] nums;
+
+    public NumArray(int[] nums) {
+        this.nums = nums;
+    }
+
+    public int sumRange(int left, int right) {
+        int r = 0;
+        for (int i = left; i <= right; i++) {
+            r += nums[i];
+        }
+        return r;
     }
 }
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray obj = new NumArray(nums);
+ * int param_1 = obj.sumRange(left,right);
+ */
